@@ -3,8 +3,10 @@ var gamePieces = 0;
 document.addEventListener("click", function(e) {
 	if (e.target.className === "tableCell") {
 		placePiece(e.target);
-		if (gamePieces === 9) {
-			document.getElementById('winner').textContent = 'Tie Game!';
+		if(checkForWin() !== '') {
+			document.getElementById('result').textContent = checkForWin();
+		} else if (gamePieces === 9) {
+			document.getElementById('result').textContent = 'Tie Game!';
 		}
 	} else if (e.target.id === "resetBtn") {
 		resetGame();
@@ -30,19 +32,36 @@ var resetGame = function() {
 }
 
 var placePiece = function(ele) {
-	console.log(`game pieces start: ${gamePieces}`);
-	console.log(ele);
 	var id = ele.id;
-	console.log('text content: ', document.getElementById(id).textContent);
 	var textContent = document.getElementById(id).textContent;
 	if (!textContent) {
 		var text = pickPiece(gamePieces);
 		document.getElementById(id).textContent = text;
 		gamePieces += 1;
 	}
-	console.log(`game pieces end: ${gamePieces}`);
 }
 
-var winners = [
-	[]
-]
+var checkForWin = function() {
+	var winner = '';
+	var tableCells = document.getElementsByClassName("tableCell");
+	if (tableCells[0].textContent !== '') {
+		if (tableCells[0].textContent === tableCells[1].textContent === tableCells[2].textContent) {
+			winner = tableCells[0].textContent;
+		} else if (tableCells[0].textContent === tableCells[3].textContent === tableCells[6].textContent) {
+			winner = tableCells[0].textContent;
+		} else if (tableCells[0].textContent === tableCells[4].textContent === tableCells[8].textContent) {
+			winner = tableCells[0].textContent;
+		} else if (tableCells[1].textContent === tableCells[4].textContent === tableCells[7].textContent) {
+			winner = tableCells[1].textContent;
+		} else if (tableCells[2].textContent === tableCells[5].textContent === tableCells[8].textContent) {
+			winner = tableCells[2].textContent;
+		} else if (tableCells[2].textContent === tableCells[4].textContent === tableCells[6].textContent) {
+			winner = tableCells[2].textContent;
+		} else if (tableCells[3].textContent === tableCells[4].textContent === tableCells[5].textContent) {
+			winner = tableCells[3].textContent;
+		} else if (tableCells[6].textContent === tableCells[7].textContent === tableCells[8].textContent) {
+			winner = tableCells[6].textContent;
+		}
+		return winner;
+	}
+}

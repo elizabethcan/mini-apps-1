@@ -1,10 +1,3 @@
-console.log('work?');
-
-var move = function(elementId) {
-	console.log(`${elementId}`);
-	document.getElementById(`${elementId}`).style.color = "red";
-};
-
 var gamePieces = 0;
 
 var placePiece = function(gamePieces) {
@@ -20,13 +13,19 @@ var placePiece = function(gamePieces) {
 }
 
 document.addEventListener("click", function(e) {
-	if (e.target.className === "tableCell")
-	console.log(e.target);
-	var id = e.target.id;
-	console.log('text content: ', document.getElementById(id).textContent);
-	var textContent = document.getElementById(id).textContent;
-	if (!textContent) {
-		var text = document.createTextNode(placePiece(gamePieces));
-		document.getElementById(id).appendChild(text);
+	if (e.target.className === "tableCell") {
+		console.log(e.target);
+		var id = e.target.id;
+		console.log('text content: ', document.getElementById(id).textContent);
+		var textContent = document.getElementById(id).textContent;
+		if (!textContent) {
+			var text = placePiece(gamePieces);
+			document.getElementById(id).textContent = text;
+		}
+	} else if (e.target.id === "resetBtn") {
+		var tableCells = document.getElementsByClassName("tableCell");
+		for (var i = 0; i < tableCells.length; i++) {
+			tableCells[i].textContent = '';
+		}
 	}
 });

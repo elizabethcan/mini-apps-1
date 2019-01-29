@@ -3,6 +3,9 @@ var gamePieces = 0;
 document.addEventListener("click", function(e) {
 	if (e.target.className === "tableCell") {
 		placePiece(e.target);
+		if (gamePieces === 9) {
+			document.getElementById('winner').textContent = 'Tie Game!';
+		}
 	} else if (e.target.id === "resetBtn") {
 		resetGame();
 	}
@@ -23,6 +26,7 @@ var resetGame = function() {
 	for (var i = 0; i < tableCells.length; i++) {
 		tableCells[i].textContent = '';
 	}
+	document.getElementById('winner').textContent = '';
 }
 
 var placePiece = function(ele) {
@@ -38,3 +42,7 @@ var placePiece = function(ele) {
 	}
 	console.log(`game pieces end: ${gamePieces}`);
 }
+
+var winners = [
+	[]
+]

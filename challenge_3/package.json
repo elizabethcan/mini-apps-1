@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon ./server.js"
+    "start": "nodemon ./server.js",
+    "react-dev": "./node_modules/.bin/babel client --watch --out-dir public --presets @babel/preset-react --source-maps inline"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

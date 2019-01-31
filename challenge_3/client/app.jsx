@@ -15,7 +15,7 @@ class PaymentForm extends React.Component {
   constructor(props) {
     super(props);
     this.changeHandler = this.changeHandler.bind(this);
-    this.clickHandler = this.clickHandler.bind(this);
+    this.clickHandler = this.clickHandler.bind(this)
     this.state = {
       cardNumber: '',
       expDate: '',
@@ -236,19 +236,32 @@ class App extends React.Component {
   }
 
   render() {
-    return (
-      <div>
+    if (this.state.page === 0) {
+      return (
         <div>
-          <h1>Shopping Cart</h1>
+          <div>
+            <h1>Shopping Cart</h1>
+          </div>
+          <UserForm displayForm={this.state.page} updatePage={this.updatePage}/>
+          <AddressForm displayForm={this.state.page} updatePage={this.updatePage}/>
+          <PaymentForm displayForm={this.state.page} updatePage={this.updatePage}/>
+          <Summary displayForm={this.state.page} updatePage={this.updatePage}/>
+          <button className="checkOutBtn" onClick={this.clickHandler}>Check Out</button>
         </div>
-        <UserForm displayForm={this.state.page} updatePage={this.updatePage}/>
-        <AddressForm displayForm={this.state.page} updatePage={this.updatePage}/>
-        <PaymentForm displayForm={this.state.page} updatePage={this.updatePage}/>
-        <Summary displayForm={this.state.page} updatePage={this.updatePage}/>
-        {/* <ActionButton currentPage={this.state.page} clickHandler={this.clickHandler}/> */}
-        <button className="checkOutBtn" onClick={this.clickHandler}>Check Out</button>
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div>
+          <div>
+            <h1>Shopping Cart</h1>
+          </div>
+          <UserForm displayForm={this.state.page} updatePage={this.updatePage}/>
+          <AddressForm displayForm={this.state.page} updatePage={this.updatePage}/>
+          <PaymentForm displayForm={this.state.page} updatePage={this.updatePage}/>
+          <Summary displayForm={this.state.page} updatePage={this.updatePage}/>
+        </div>
+      )
+    }
   }
 }
 

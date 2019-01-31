@@ -192,23 +192,6 @@ class UserForm extends React.Component {
   }
 }
 
-// function ActionButton(props) {
-//   if (props.currentPage === 0) {
-//     return (
-//       <button className="checkOutBtn" onClick={props.clickHandler}>Check Out</button>
-//     )
-//   } else if (props.currentPage === 4) {
-//     return (
-//       <button className="purchaseBtn" onClick={props.clickHandler}>Purchase</button>
-//     )
-//   } else {
-//     return (
-//       <button className="nextBtn" onClick={props.clickHandler}>Next</button>
-//     )
-//   }
-// }
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);

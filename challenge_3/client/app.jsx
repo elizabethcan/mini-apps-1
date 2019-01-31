@@ -3,22 +3,36 @@
 class UserForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: '',
+      email: '',
+      password: ''
+    };
+    this.changeHandler = this.changeHandler.bind(this);
+  }
+
+  changeHandler(event) {
+    console.log(event.target.id);
+    console.log(`event.target.value: ${event.target.value}`);
+    this.setState({
+      [event.target.id]: event.target.value
+    });
   }
 
   render() {
     return (
       <div>
-        <div>
+        <div className="userForm">
           <div>Name:</div>
-          <input className="userFormInput" id="userName"></input>
+          <input className="userFormInput" id="name" value={this.state.name} onChange={this.changeHandler}></input>
         </div>
         <div>
-          <div>Username:</div>
-          <input className="userFormInput" id="userEmail"></input>
+          <div>Email:</div>
+          <input className="userFormInput" id="email" value={this.state.email} onChange={this.changeHandler}></input>
         </div>
         <div>
           <div>Password:</div>
-          <input className="userFormInput" id="userPassword"></input>
+          <input className="userFormInput" id="password" value={this.state.password} onChange={this.changeHandler}></input>
         </div>
       </div>
     )
@@ -28,6 +42,13 @@ class UserForm extends React.Component {
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler(event) {
+    event.preventDefault();
+    alert('click');
   }
 
   render() {
@@ -36,9 +57,9 @@ class App extends React.Component {
         <div>
           <h1>Shopping Cart</h1>
         </div>
-        <button className="checkOutBtn">Check Out</button>
+        <button className="checkOutBtn" onClick={this.clickHandler}>Check Out</button>
         <UserForm />
-        <button>Next</button>
+        <button onClick={this.clickHandler}>Next</button>
       </div>
     )
   }

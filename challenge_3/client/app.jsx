@@ -1,14 +1,31 @@
 // you MUST place all of your React components into one file, app.jsx
+function Summary(props) {
+  if (props.displayForm === 4) {
+    return (
+      <div>
+        <div>DISPLAY SUMMARY HERE</div>
+        <button className="purchaseBtn" onClick={props.clickHandler}>Purchase</button>
+      </div>);
+  } else {
+    return null;
+  }
+}
+
 class PaymentForm extends React.Component {
   constructor(props) {
     super(props);
+    this.changeHandler = this.changeHandler.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
     this.state = {
       cardNumber: '',
       expDate: '',
       cvv: '',
       cardZip: ''
     };
-    this.changeHandler = this.changeHandler.bind(this);
+  }
+
+  addPayment() {
+    console.log(this.state);
   }
 
   changeHandler(event) {
@@ -17,8 +34,14 @@ class PaymentForm extends React.Component {
     });
   }
 
+  clickHandler(event) {
+    event.preventDefault();
+    this.addPayment();
+    this.props.updatePage();
+  }
+
   render() {
-    if (this.props.displayForm === 'paymentForm') {
+    if (this.props.displayForm === 3) {
       return (
         <div className="paymentForm">
           <div>
@@ -37,6 +60,7 @@ class PaymentForm extends React.Component {
             <div>Zip Code:</div>
             <input className="paymentFormInput" id="cardZip" value={this.state.cardZip} onChange={this.changeHandler}></input>
           </div>
+          <button className="nextBtn" onClick={this.clickHandler}>Next</button>
         </div>
       );
     } else {
@@ -48,6 +72,8 @@ class PaymentForm extends React.Component {
 class AddressForm extends React.Component {
   constructor(props) {
     super(props);
+    this.changeHandler = this.changeHandler.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
     this.state = {
       address1: '',
       address2: '',
@@ -56,7 +82,10 @@ class AddressForm extends React.Component {
       zip: '',
       phone: ''
     }
-    this.changeHandler = this.changeHandler.bind(this);
+  }
+
+  addAddress() {
+    console.log(this.state);
   }
 
   changeHandler(event) {
@@ -65,8 +94,14 @@ class AddressForm extends React.Component {
     });
   }
 
+  clickHandler(event) {
+    event.preventDefault();
+    this.addAddress();
+    this.props.updatePage();
+  }
+
   render() {
-    if (this.props.displayForm === 'addressForm') {
+    if (this.props.displayForm === 2) {
       return (
         <div className="addressForm">
           <div>
@@ -93,6 +128,7 @@ class AddressForm extends React.Component {
             <div>Phone Number:</div>
             <input className="addressFormInput" id="phone" value={this.state.phone} onChange={this.changeHandler}></input>
           </div>
+          <button className="nextBtn" onClick={this.clickHandler}>Next</button>
         </div>
       )
     } else {
@@ -110,6 +146,13 @@ class UserForm extends React.Component {
       password: ''
     };
     this.changeHandler = this.changeHandler.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
+    this.addUser = this.addUser.bind(this);
+  }
+
+  addUser() {
+    console.log(this.state);
+    // send this info to server to send to db
   }
 
   changeHandler(event) {
@@ -118,8 +161,14 @@ class UserForm extends React.Component {
     });
   }
 
+  clickHandler(event) {
+    event.preventDefault();
+    this.addUser();
+    this.props.updatePage();
+  }
+
   render() {
-    if (this.props.displayForm === 'userForm') {
+    if (this.props.displayForm === 1) {
       return (
         <div className="userForm">
           <div>
@@ -134,7 +183,7 @@ class UserForm extends React.Component {
             <div>Password:</div>
             <input className="userFormInput" id="password" value={this.state.password} onChange={this.changeHandler}></input>
           </div>
-          <button onClick={this.clickHandler}>Next</button>
+          <button className="nextBtn" onClick={this.clickHandler}>Next</button>
         </div>
       )
     } else {
@@ -143,24 +192,47 @@ class UserForm extends React.Component {
   }
 }
 
-function ActionButton(props) {
-  return (
-    <button className="checkOutBtn" onClick={props.clickHandler}>Check Out</button>
-  )
-}
+// function ActionButton(props) {
+//   if (props.currentPage === 0) {
+//     return (
+//       <button className="checkOutBtn" onClick={props.clickHandler}>Check Out</button>
+//     )
+//   } else if (props.currentPage === 4) {
+//     return (
+//       <button className="purchaseBtn" onClick={props.clickHandler}>Purchase</button>
+//     )
+//   } else {
+//     return (
+//       <button className="nextBtn" onClick={props.clickHandler}>Next</button>
+//     )
+//   }
+// }
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.clickHandler = this.clickHandler.bind(this);
+    this.updatePage = this.updatePage.bind(this);
     this.state = {
-      page: ''
+      page: 0
     }
+  }
+
+  updatePage() {
+    if (this.state.page < 4) {
+      var newPage = this.state.page + 1;
+    } else {
+      var newPage = 0;
+    }
+    this.setState({
+      page: newPage
+    });
   }
 
   clickHandler(event) {
     event.preventDefault();
-    alert('click');
+    this.updatePage();
   }
 
   render() {
@@ -169,10 +241,12 @@ class App extends React.Component {
         <div>
           <h1>Shopping Cart</h1>
         </div>
-        <UserForm displayForm={this.state.page}/>
-        <AddressForm displayForm={this.state.page}/>
-        <PaymentForm displayForm={this.state.page}/>
-        <ActionButton clickHandler={this.clickHandler}/>
+        <UserForm displayForm={this.state.page} updatePage={this.updatePage}/>
+        <AddressForm displayForm={this.state.page} updatePage={this.updatePage}/>
+        <PaymentForm displayForm={this.state.page} updatePage={this.updatePage}/>
+        <Summary displayForm={this.state.page} updatePage={this.updatePage}/>
+        {/* <ActionButton currentPage={this.state.page} clickHandler={this.clickHandler}/> */}
+        <button className="checkOutBtn" onClick={this.clickHandler}>Check Out</button>
       </div>
     )
   }

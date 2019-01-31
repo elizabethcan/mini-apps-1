@@ -75,8 +75,8 @@ class AddressForm extends React.Component {
     this.changeHandler = this.changeHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.state = {
-      address1: '',
-      address2: '',
+      address: '',
+      apt: '',
       city: '',
       state: '',
       zip: '',
@@ -106,11 +106,11 @@ class AddressForm extends React.Component {
         <div className="addressForm">
           <div>
             <div>Address:</div>
-            <input className="addressFormInput" id="address1" value={this.state.address1} onChange={this.changeHandler}></input>
+            <input className="addressFormInput" id="address" value={this.state.address1} onChange={this.changeHandler}></input>
           </div>
           <div>
             <div>Apt:</div>
-            <input className="addressFormInput" id="adress2" value={this.state.address2} onChange={this.changeHandler}></input>
+            <input className="addressFormInput" id="apt" value={this.state.address2} onChange={this.changeHandler}></input>
           </div>
           <div>
             <div>City:</div>

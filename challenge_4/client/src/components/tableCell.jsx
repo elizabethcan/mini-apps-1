@@ -9,14 +9,12 @@ class TableCell extends React.Component {
 
   clickHandler(event) {
     event.preventDefault();
-    console.log(`event.target.id: ${event.target.id}`)
     this.placePiece();
   }
 
   placePiece() {
-    var piece = 'x';
     this.setState({
-      occupied: true,
+      occupied: 'player1',
     });
   }
 

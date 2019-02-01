@@ -12,6 +12,6 @@
 .red {
   padding: 20px;
   border: solid 1px;
-  border-color: red;
   border-radius: 30px;
+  background: red;
 }

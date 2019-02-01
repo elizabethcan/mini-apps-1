@@ -1,0 +1,9 @@
+.inline-block {
+  border: solid 1px;
+  display: inline-block;
+}
+
+.cell {
+  padding: 20px;
+  border: solid 1px;
+}

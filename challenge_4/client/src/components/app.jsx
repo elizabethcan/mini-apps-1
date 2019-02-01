@@ -5,25 +5,25 @@ class App extends React.Component {
     return (
       <div>
         <h1>Connect 4!</h1>
-        <table className="inline-block">
+        <table className="column">
           <TableColumn />
         </table>
-        <table className="inline-block">
+        <table className="column">
           <TableColumn />
         </table>
-        <table className="inline-block">
+        <table className="column">
           <TableColumn />
         </table>
-        <table className="inline-block">
+        <table className="column">
           <TableColumn />
         </table>
-        <table className="inline-block">
+        <table className="column">
           <TableColumn />
         </table>
-        <table className="inline-block">
+        <table className="column">
           <TableColumn />
         </table>
-        <table className="inline-block">
+        <table className="column">
           <TableColumn />
         </table>
       </div>

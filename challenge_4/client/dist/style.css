@@ -6,4 +6,12 @@
 .cell {
   padding: 20px;
   border: solid 1px;
+  border-radius: 30px;
+}
+
+.red {
+  padding: 20px;
+  border: solid 1px;
+  border-color: red;
+  border-radius: 30px;
 }

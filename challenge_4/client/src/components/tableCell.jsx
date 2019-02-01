@@ -25,7 +25,7 @@ class TableCell extends React.Component {
     }
     return (
       <tr className="row">
-        <td className={className} id={this.props.row} onClick={this.clickHandler}></td>
+        <td className={className} id={this.props.row}></td>
       </tr>
     );
   }

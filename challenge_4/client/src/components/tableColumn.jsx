@@ -14,12 +14,12 @@ class TableColumn extends React.Component {
   render() {
     return (
       <tbody onClick={this.clickHandler}>
-        <TableCell row="5"/>
-        <TableCell row="4"/>
-        <TableCell row="3"/>
-        <TableCell row="2"/>
-        <TableCell row="1"/>
-        <TableCell row="0"/>
+        <TableCell row="row5"/>
+        <TableCell row="row4"/>
+        <TableCell row="row3"/>
+        <TableCell row="row2"/>
+        <TableCell row="row1"/>
+        <TableCell row="row0"/>
       </tbody>
     );
   }
